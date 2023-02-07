@@ -105,3 +105,13 @@ Send message to `payments` queue
 ```
 
 ### Check postman logs and Database
+
+### setting to run with springboot 2.7
+
+1. Config for spring boot auto config
+camel.servlet.mapping.context-path=/*
+2. Setting main start
+ //@SpringBootApplication
+@Configuration
+@EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class})
+
