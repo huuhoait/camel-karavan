@@ -41,7 +41,7 @@ spec:
         id: post
     - route:
         from:
-          uri: kamelet:jms-apache-artemis-source
+          uri: kamelet:jms-apache-activemq-source
           steps:
             - to:
                 uri: xj:identity
