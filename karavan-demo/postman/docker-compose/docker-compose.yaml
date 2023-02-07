@@ -28,7 +28,7 @@ services:
       KAFKA_CREATE_TOPICS: "events:1:1"
 
   artemis:
-    image: artemis-adoptopenjdk-11:latest
+    image: symptoma/activemq:latest
     container_name: artemis
     environment:
       - ARTEMIS_USER=admin
