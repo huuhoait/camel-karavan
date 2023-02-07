@@ -19,6 +19,9 @@ spec:
             - multicast:
                 steps:
                   - to:
+                      uri: direct:sql-process
+                      id: to-bb76
+                  - to:
                       uri: kamelet:kafka-not-secured-sink
                       parameters:
                         topic: parcels
@@ -128,6 +131,31 @@ spec:
           parameters:
             topic: deliveries
             brokerUrl: tcp://localhost:1883
+    - route:
+        id: route-2a2a
+        from:
+          uri: direct:sql-process
+          id: from-f78d
+          steps:
+            - log:
+                message: 'sql-process body:'
+                id: log-8df7
+            - unmarshal:
+                id: unmarshal-0736
+                json:
+                  id: json-fdb1
+                  library: jackson
+            - log:
+                message: '*************** sql-process2 body: ${body.get("id")}'
+                id: log-a8df7
+            - to:
+                uri: bean:myBean
+                id: to-8a4b
+            - log:
+                message: 'sql-process2 body: ${body}'
+                id: log-a8df7
     - beans:
         - name: aggregator
           type: org.apache.camel.processor.aggregate.GroupedBodyAggregationStrategy
+        - name: myBean
+          type: org.demo.javakaravan.CustomProcessor
