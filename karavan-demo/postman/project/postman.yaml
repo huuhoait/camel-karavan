@@ -26,11 +26,11 @@ spec:
                   - to:
                       uri: kamelet:postgresql-sink
                       parameters:
-                        serverName: localhost
-                        serverPort: '5432'
-                        username: postgres
-                        password: postgres
-                        databaseName: demo
+                        serverName: '{{camel.postgresql.host}}'
+                        serverPort: '{{camel.postgresql.port}}'
+                        username: '{{camel.postgresql.username}}'
+                        password: '{{camel.postgresql.password}}'
+                        databaseName: '{{camel.postgresql.database-name}}'
                         query: >-
                           INSERT INTO parcels (id,address) VALUES
                           (:#id,:#address) ON CONFLICT (id)  DO NOTHING
